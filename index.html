@@ -5,8 +5,8 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
     <style>
-      html {
-        background: url(https://images.pexels.com/photos/131639/pexels-photo-131639.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260) no-repeat center center fixed;
+      body {
+        background: url("assets/woodbackground.jpg") no-repeat center fixed;
         -webkit-background-size: cover;
         -moz-background-size: cover;
         -o-background-size: cover;
@@ -23,9 +23,27 @@
         position: fixed;
         bottom: 0px;
       }
-      body {
-        background-color: BurlyWood;
-        opacity: .7;
+      .card-felt {
+        top-margin: 5px;
+        width:90%;
+        padding: 10px;
+        background-image: url("assets/felt.jpg");
+        border-radius: 10px;
+        border: 2px solid black;
+        margin: auto;
+      }
+      #buttons {
+        margin: auto;
+        padding: 10px;
+      }
+      #buttons .row {
+        padding: 10px;
+      }
+      .btn-lg {
+        font-size: 30px;
+      }
+      #my-title {
+        color: white;
       }
 
     </style>
@@ -35,12 +53,40 @@
     </script>
   </head>
   <body>
-    <h1>Senior Project application #3: Mexican Train Dominos</h1>
 
-    <div>
+    <div class="card-felt">
+
+    <h1 id="my-title">Senior Project application #3: Mexican Train Dominos</h1>
+
+    <div class="container-fluid" id="buttons">
+
+      <div class = "row">
+        <div class="col-sm-3 col-md-4"></div>
+        <div class="col-sm-6 col-md-4">
+          <button class="btn btn-primary btn-lg btn-block">New Game</button>
+        </div>
+        <div class="col-sm-3 col-md-4"></div>
+      </div>
+
+      <div class = "row">
+        <div class="col-sm-3 col-md-4"></div>
+        <div class="col-sm-6 col-md-4">
+          <button class="btn btn-secondary btn-lg btn-block">Options</button>
+        </div>
+        <div class="col-sm-3 col-md-4"></div>
+      </div>
+
+      <div class = "row">
+        <div class="col-sm-3 col-md-4"></div>
+        <div class="col-sm-6 col-md-4">
+          <button class="btn btn-info btn-lg btn-block">About</button>
+        </div>
+        <div class="col-sm-3 col-md-4"></div>
+      </div>
 
     </div>
 
     <h6 class="bottom">created by Paul Lewis</h6>
+    </div>
   </body>
 </html>
