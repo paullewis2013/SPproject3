@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Dominos</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <style>
+      body {
+        background: url("assets/woodbackground.jpg") no-repeat center fixed;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+        padding-top: 10px;
+      }
+
+      h1, h6 {
+        text-align: center;
+        margin: 10px;
+      }
+      .bottom {
+        position: fixed;
+        bottom: 0px;
+      }
+      .card-felt {
+        top-margin: 5px;
+        width:95%;
+        padding: 10px;
+        background-image: url("assets/felt.jpg");
+        border-radius: 10px;
+        border: 2px solid black;
+        margin-left: 2.5%;
+        position: absolute;
+        bottom: 35px;
+        top: 70px;
+      }
+      #menu-symbol{
+        margin-left: 10px;
+        position: absolute;
+        top: 10;
+        border-radius: 5px;
+        padding-left: 10px;
+        padding-right: 10px;
+        background-color: white;
+        opacity: .5;
+      }
+      .sidenav {
+        height: 100%;
+        width: 0;
+        position: fixed;
+        z-index: 1;
+        top: 0;
+        left: 0;
+        background-color: #111;
+        overflow-x: hidden;
+        transition: 0.5s;
+        padding-top: 60px;
+      }
+      .sidenav .closebtn {
+        position: absolute;
+        top: 0;
+        right: 25px;
+        font-size: 36px;
+        margin-left: 50px;
+      }
+      .sidenav a {
+        padding: 8px 8px 8px 32px;
+        text-decoration: none;
+        font-size: 25px;
+        color: #818181;
+        display: block;
+        transition: 0.3s;
+      }
+
+      .sidenav a:hover {
+          color: #f1f1f1;
+      }
+      #main {
+        transition: margin-left .5s;
+        padding: 16px;
+      }
+
+    </style>
+
+    <script>
+
+      function openNav() {
+        document.getElementById("mySidenav").style.width = "200px";
+      }
+
+      function closeNav() {
+        document.getElementById("mySidenav").style.width = "0";
+      }
+
+      function Domino(value1, value2) {
+        this.values = [value1, value2];
+        //needs an image attribute
+
+      }
+      Domino.prototype.toString = function() {
+        return "" + this.values[0] + "|" + this.values[1];
+      }
+
+      var dominosArr = new Array();
+
+
+
+      function newGame() {
+
+        //some number greater than 0 less than 19
+        //sets range of domino dot values
+        let maxNum = 6
+        //populate array with full set of dominos
+        for(i = 0; i < maxNum; i++){
+          for(j = i; j < maxNum; j++){
+            dominosArr.push(new Domino(i, j));
+          }
+        }
+        for(i=0; i<dominosArr.length; i++){
+          console.log(dominosArr[i].toString());
+        }
+
+
+      }
+
+      newGame();
+
+    </script>
+  </head>
+  <body>
+    <div id="mySidenav" class="sidenav">
+      <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+      <a href="index.html">Menu</a>
+      <a href="game.html">Restart</a>
+    </div>
+    <span style="font-size: 30px;cursor:pointer" onclick=openNav() id="menu-symbol"> &#9776; </span>
+
+    <h1 id="game-title">Mexican Train</h1>
+
+    <div class="card-felt">
+
+      <div class="container-fluid">
+
+      </div>
+
+    </div>
+
+    <h6 class="bottom">created by Paul Lewis</h6>
+  </body>
+</html>
