@@ -15,13 +15,12 @@ function fitToContainer() {
 var dubImage = new Image();
 dubImage.src = "assets/dominos/0-0.png";
 dubImage.onload = function() {
-  c.drawImage(dubImage, (canvas.width/2 - (dubImage.width * 0.2)/2), 0, dubImage.width * 0.2, dubImage.height * 0.2);
+  c.drawImage(dubImage, (canvas.width/2 - (dubImage.width)/2), 0, dubImage.width, dubImage.height);
 
-  c.font = "40px Arial";
+  c.font = "35px Arial";
   c.textAlign = "center";
-  console.log(startDub);
-  c.fillText(startDub.values[0], canvas.width/2, 50);
-  c.fillText(startDub.values[1], canvas.width/2, 100);
+  c.fillText(startDub.values[0], canvas.width/2, 40);
+  c.fillText(startDub.values[1], canvas.width/2, 90);
 }
 
 //creates bonepile domino with count of remaining dominos in bonepile
@@ -39,6 +38,31 @@ bonepile.onload = function() {
   c.fillText(dominosArr.length, canvas.width/2, 275);
 }
 
+//this took a long time because I didn't know what closures were
+//this little block took me hours to write
+var handImgs = [];
+
+function drawUserHand(){
+  for(i=0; i<userHand.length; i++){
+
+    (function (i) {
+      var xPos = ((i * 50) + 10);
+      handImgs[i] = new Image();
+      handImgs[i].src = "assets/dominos/0-0.png";
+      handImgs[i].onload = function () {
+          c.drawImage(handImgs[i], xPos, 700);
+          c.font = "35px Arial";
+          c.textAlign = "center";
+          c.fillText(userHand[i].values[0], xPos + 25, 740);
+          c.fillText(userHand[i].values[1], xPos + 25, 790);
+
+      };
+    })(i);
+
+  }
+}
+
+drawUserHand();
 
 // var dots = new Image();
 // dots.src = "assets/dominos/5.png";

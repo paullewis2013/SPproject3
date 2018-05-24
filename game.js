@@ -11,10 +11,15 @@ function closeNav() {
 function Domino(value1, value2) {
   this.values = [value1, value2];
   //needs an image attribute
-
+  this.imgName = "assets/dominos/0-0.png";
 }
 Domino.prototype.toString = function() {
   return "" + this.values[0] + "|" + this.values[1];
+}
+Domino.prototype.flip = function() {
+  let temp = this.values[0];
+  this.values[0] = this.values[1];
+  this.values[1] = temp;
 }
 
 var dominosArr = new Array();
@@ -22,14 +27,16 @@ var userHand = new Array();
 var defaultStartDub = true;
 var startDub;
 
+//some number greater than 0 less than 19
+//sets range of domino dot values
+var maxNum = 16
+
+// sets size of starting hand
+var handSize = 15;
+
 function newGame() {
 
-  //some number greater than 0 less than 19
-  //sets range of domino dot values
-  var maxNum = 6
 
-  // sets size of starting hand
-  var handSize = 5;
 
   //populate array with full set of dominos
   for(i = 0; i < maxNum; i++){
@@ -39,7 +46,6 @@ function newGame() {
   }
   if(defaultStartDub){
     startDub = dominosArr.pop();
-    console.log(startDub);
   }
 
   //now shuffle the array of dominos to random order (Fisher-Yates algorithm)
@@ -74,7 +80,7 @@ function newGame() {
 
   //print out dominos
   for(i=0; i<userHand.length; i++){
-    console.log(dominosArr[i].toString());
+    console.log(userHand[i].toString());
   }
 
 
