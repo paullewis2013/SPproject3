@@ -17,6 +17,13 @@ var mouse = {
   y: undefined
 }
 
+window.addEventListener('resize',
+  function(event){
+    fitToContainer(canvas);
+    drawAll();
+  })
+
+
 //updates mouse's x and y coordinates when the user moves their mouse
 // to coordinates of mouse on canvas
 window.addEventListener('mousemove',
@@ -37,6 +44,8 @@ window.addEventListener('click',
       if(dominosArr.length >= 1){
         userHand.push(dominosArr.pop());
         drawAll();
+      }else{
+        alert('bonepile is empty');
       }
     }
   })
