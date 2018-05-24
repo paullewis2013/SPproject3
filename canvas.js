@@ -39,7 +39,7 @@ window.addEventListener('click',
     // console.log(event);
 
     //if user clicks on bonepile
-    if((mouse.x > canvas.width/2 - (bonepile.width * 0.2)/2) && (mouse.y > 200) && (mouse.x < canvas.width/2 + (bonepile.width * 0.2)/2) && (mouse.y < 200 + bonepile.height * 0.2)){
+    if((mouse.x > canvas.width/2 - (bonepile.width)/2) && (mouse.y > 200) && (mouse.x < canvas.width/2 + (bonepile.width)/2) && (mouse.y < 200 + bonepile.height)){
 
       if(dominosArr.length >= 1){
         userHand.push(dominosArr.pop());
@@ -48,6 +48,15 @@ window.addEventListener('click',
         alert('bonepile is empty');
       }
     }
+
+    //if user clicks on a domino in hand
+    //select the domino
+
+    //if user double clicks on a domino in hand
+    //flip the domino upside down
+
+
+
   })
 
 //draws starting double at top of canvas
@@ -64,14 +73,12 @@ function drawStartDub(){
   }
 }
 
-
-
 //creates bonepile domino with count of remaining dominos in bonepile
 var bonepile = new Image();
 function drawBonePile(){
   bonepile.src = "assets/dominos/back.png";
   bonepile.onload = function() {
-    c.drawImage(bonepile, (canvas.width/2 - (bonepile.width * 0.2)/2), 200, bonepile.width * 0.2, bonepile.height * 0.2);
+    c.drawImage(bonepile, (canvas.width/2 - (bonepile.width)/2), 200, bonepile.width, bonepile.height);
 
     c.font = "40px Arial";
     if(dominosArr.length > 99){
@@ -79,7 +86,7 @@ function drawBonePile(){
     }
 
     c.textAlign = "center";
-    c.fillText(dominosArr.length, canvas.width/2, 275);
+    c.fillText(dominosArr.length, canvas.width/2, 270);
   }
 }
 

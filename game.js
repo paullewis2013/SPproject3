@@ -12,6 +12,10 @@ function Domino(value1, value2) {
   this.values = [value1, value2];
   //needs an image attribute
   this.imgName = "assets/dominos/0-0.png";
+  this.leftB = undefined;
+  this.rightB = undefined;
+  this.topB = undefined;
+  this.bottomB = undefined;
 }
 Domino.prototype.toString = function() {
   return "" + this.values[0] + "|" + this.values[1];
