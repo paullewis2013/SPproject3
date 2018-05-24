@@ -41,6 +41,7 @@ var train1 = [];
 var train2 = [];
 var train3 = [];
 var train4 = [];
+var trains = [train1, train2, train3, train4];
 
 //some number greater than 0 less than 19
 //sets range of domino dot values

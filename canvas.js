@@ -127,12 +127,33 @@ function drawUserHand(){
   }
 }
 
+
+//draws the trains
+var trainImgs = [];
+function drawTrains(){
+  for(i=0; i<trains.length; i++){
+
+    (function (i) {
+      var xPos = ((1 + (i * 2)) * ((canvas.width)/(2 * trains.length)));
+
+      trainImgs[i] = new Image();
+      trainImgs[i].src = "assets/train.png";
+      trainImgs[i].onload = function () {
+        c.drawImage(trainImgs[i], xPos - trainImgs[i].width/2, 0);
+      };
+
+    })(i);
+
+  }
+}
+
 //clears canvas then redraws with updated images
 function drawAll(){
   c.clearRect(0,0, canvas.width, canvas.height);
   drawStartDub();
   drawUserHand();
   drawBonePile();
+  drawTrains();
 }
 
 drawAll();
