@@ -134,8 +134,6 @@ function drawUserHand(){
 var trainImgs = [];
 function drawTrains(){
 
-  console.log('drawTrains()');
-
   for(i=0; i<trains.length; i++){
 
     (function (i) {
@@ -154,8 +152,6 @@ function drawTrains(){
 
 //clears canvas then redraws with updated images
 function drawAll(){
-
-  console.log("drawAll()");
 
   c.clearRect(0,0, canvas.width, canvas.height);
   drawStartDub();
