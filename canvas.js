@@ -36,7 +36,7 @@ window.addEventListener('mousemove',
 
 window.addEventListener('click',
   function(event) {
-    // console.log(event);
+    //console.log(mouse);
 
     //if user clicks on bonepile
     if((mouse.x > canvas.width/2 - (bonepile.width)/2) && (mouse.y > 200) && (mouse.x < canvas.width/2 + (bonepile.width)/2) && (mouse.y < 200 + bonepile.height)){
@@ -51,6 +51,14 @@ window.addEventListener('click',
 
     //if user clicks on a domino in hand
     //select the domino
+    for(i=0; i<userHand.length; i++){
+      let dom = userHand[i];
+      if(mouse.x > dom.leftB && mouse.x < dom.rightB && mouse.y > dom.topB && mouse.y < dom.bottomB){
+        userHand[i].flip();
+        drawAll();
+      }
+    }
+
 
     //if user double clicks on a domino in hand
     //flip the domino upside down
@@ -100,14 +108,18 @@ function drawUserHand(){
 
     (function (i) {
       var xPos = ((i * 55) + 10);
+      var yPos = 700;
       handImgs[i] = new Image();
       handImgs[i].src = "assets/dominos/0-0.png";
       handImgs[i].onload = function () {
-          c.drawImage(handImgs[i], xPos, 700);
+          c.drawImage(handImgs[i], xPos, yPos);
           c.font = "35px Arial";
           c.textAlign = "center";
           c.fillText(userHand[i].values[0], xPos + 25, 740);
           c.fillText(userHand[i].values[1], xPos + 25, 790);
+
+          //update boundaries of domino
+          userHand[i].setBounds(xPos, yPos, xPos + handImgs[i].width, yPos + handImgs[i].height);
 
       };
     })(i);

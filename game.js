@@ -25,6 +25,12 @@ Domino.prototype.flip = function() {
   this.values[0] = this.values[1];
   this.values[1] = temp;
 }
+Domino.prototype.setBounds = function(leftB, topB, rightB, bottomB) {
+  this.leftB = leftB;
+  this.topB = topB;
+  this.rightB = rightB;
+  this.bottomB = bottomB;
+}
 
 var dominosArr = new Array();
 var userHand = new Array();
