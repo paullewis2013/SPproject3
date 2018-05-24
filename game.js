@@ -27,9 +27,14 @@ var userHand = new Array();
 var defaultStartDub = true;
 var startDub;
 
+var train1 = [];
+var train2 = [];
+var train3 = [];
+var train4 = [];
+
 //some number greater than 0 less than 19
 //sets range of domino dot values
-var maxNum = 16
+var maxNum = 6
 
 // sets size of starting hand
 var handSize = 15;
@@ -79,9 +84,9 @@ function newGame() {
   //code here
 
   //print out dominos
-  for(i=0; i<userHand.length; i++){
-    console.log(userHand[i].toString());
-  }
+  // for(i=0; i<userHand.length; i++){
+  //   console.log(userHand[i].toString());
+  // }
 
 
 }
