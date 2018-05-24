@@ -25,14 +25,14 @@
       .card-felt {
         top-margin: 5px;
         width:95%;
-        padding: 10px;
         background-image: url("assets/felt.jpg");
         border-radius: 10px;
         border: 2px solid black;
-        margin-left: 2.5%;
+        left: 2.5%;
         position: absolute;
         bottom: 35px;
         top: 70px;
+        min-width: 1080px;
       }
       #menu-symbol{
         margin-left: 10px;
@@ -79,53 +79,20 @@
         transition: margin-left .5s;
         padding: 16px;
       }
-
+      .container-fluid{
+        padding: 0px;
+      }
+      canvas {
+        /* border: 3px solid red; */
+        margin: 0px;
+      }
+      p {
+        color:red;
+      }
     </style>
 
-    <script>
+    <script src="game.js"></script>
 
-      function openNav() {
-        document.getElementById("mySidenav").style.width = "200px";
-      }
-
-      function closeNav() {
-        document.getElementById("mySidenav").style.width = "0";
-      }
-
-      function Domino(value1, value2) {
-        this.values = [value1, value2];
-        //needs an image attribute
-
-      }
-      Domino.prototype.toString = function() {
-        return "" + this.values[0] + "|" + this.values[1];
-      }
-
-      var dominosArr = new Array();
-
-
-
-      function newGame() {
-
-        //some number greater than 0 less than 19
-        //sets range of domino dot values
-        let maxNum = 6
-        //populate array with full set of dominos
-        for(i = 0; i < maxNum; i++){
-          for(j = i; j < maxNum; j++){
-            dominosArr.push(new Domino(i, j));
-          }
-        }
-        for(i=0; i<dominosArr.length; i++){
-          console.log(dominosArr[i].toString());
-        }
-
-
-      }
-
-      newGame();
-
-    </script>
   </head>
   <body>
     <div id="mySidenav" class="sidenav">
@@ -139,9 +106,8 @@
 
     <div class="card-felt">
 
-      <div class="container-fluid">
-
-      </div>
+        <canvas></canvas>
+        <script src="canvas.js"></script>
 
     </div>
 
