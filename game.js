@@ -24,6 +24,9 @@ Domino.prototype.flip = function() {
   let temp = this.values[0];
   this.values[0] = this.values[1];
   this.values[1] = temp;
+
+  console.log("flip()");
+
 }
 Domino.prototype.setBounds = function(leftB, topB, rightB, bottomB) {
   this.leftB = leftB;

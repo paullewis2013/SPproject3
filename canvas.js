@@ -17,6 +17,7 @@ var mouse = {
   y: undefined
 }
 
+//changes size of canvas when window changes size
 window.addEventListener('resize',
   function(event){
     fitToContainer(canvas);
@@ -43,7 +44,8 @@ window.addEventListener('click',
 
       if(dominosArr.length >= 1){
         userHand.push(dominosArr.pop());
-        drawAll();
+        drawUserHand();
+        drawBonePile();
       }else{
         alert('bonepile is empty');
       }
@@ -55,7 +57,7 @@ window.addEventListener('click',
       let dom = userHand[i];
       if(mouse.x > dom.leftB && mouse.x < dom.rightB && mouse.y > dom.topB && mouse.y < dom.bottomB){
         userHand[i].flip();
-        drawAll();
+        drawUserHand();
       }
     }
 
@@ -65,7 +67,7 @@ window.addEventListener('click',
 
 
 
-  })
+  });
 
 //draws starting double at top of canvas
 function drawStartDub(){
@@ -131,6 +133,9 @@ function drawUserHand(){
 //draws the trains
 var trainImgs = [];
 function drawTrains(){
+
+  console.log('drawTrains()');
+
   for(i=0; i<trains.length; i++){
 
     (function (i) {
@@ -149,6 +154,9 @@ function drawTrains(){
 
 //clears canvas then redraws with updated images
 function drawAll(){
+
+  console.log("drawAll()");
+
   c.clearRect(0,0, canvas.width, canvas.height);
   drawStartDub();
   drawUserHand();
