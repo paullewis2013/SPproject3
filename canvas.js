@@ -56,8 +56,22 @@ window.addEventListener('click',
     for(i=0; i<userHand.length; i++){
       let dom = userHand[i];
       if(mouse.x > dom.leftB && mouse.x < dom.rightB && mouse.y > dom.topB && mouse.y < dom.bottomB){
-        userHand[i].flip();
-        drawUserHand();
+        selectedDom = dom;
+        selectedIndex = i;
+        drawSelectedDom();
+      }
+    }
+
+    // if user clicks on a train and has a domino selected
+    if(selectedDom !== undefined){
+      for(i=0; i<trainsArr.length; i++){
+        let train = trainsArr[i];
+        if(mouse.x > train.leftB && mouse.x < train.rightB && mouse.y > train.topB && mouse.y < train.bottomB){
+          console.log(train);
+          if(train.addDomino(selectedDom)){
+            drawAll();
+          }
+        }
       }
     }
 
@@ -100,7 +114,20 @@ function drawBonePile(){
   }
 }
 
+var selectImage = new Image();
+function drawSelectedDom(){
+  if(selectedDom !== undefined){
+    selectImage.src = "assets/dominos/0-0.png";
+    selectImage.onload = function() {
+      c.drawImage(selectImage, 10, 550);
+      c.font = "35px Arial";
+      c.textAlign = "center";
+      c.fillText(selectedDom.values[0], 35, 590);
+      c.fillText(selectedDom.values[1], 35, 640);
+    }
 
+  }
+}
 
 //this took a long time because I didn't know what closures were
 //this little block took me hours to write
@@ -134,15 +161,20 @@ function drawUserHand(){
 var trainImgs = [];
 function drawTrains(){
 
-  for(i=0; i<trains.length; i++){
+  for(i=0; i<trainsArr.length; i++){
 
     (function (i) {
-      var xPos = ((1 + (i * 2)) * ((canvas.width)/(2 * trains.length)));
+      var xPos = ((1 + (i * 2)) * ((canvas.width)/(2 * trainsArr.length)));
 
       trainImgs[i] = new Image();
-      trainImgs[i].src = "assets/train.png";
+      trainImgs[i].src = trainsArr[i].imgName;
       trainImgs[i].onload = function () {
-        c.drawImage(trainImgs[i], xPos - trainImgs[i].width/2, 0);
+
+
+        var leftEdge = xPos - trainImgs[i].width/2;
+
+        c.drawImage(trainImgs[i], leftEdge, 0);
+        trainsArr[i].setBounds(leftEdge, 0, leftEdge + trainImgs[i].width, trainImgs[i].height);
       };
 
     })(i);
@@ -158,6 +190,7 @@ function drawAll(){
   drawUserHand();
   drawBonePile();
   drawTrains();
+  drawSelectedDom();
 }
 
 drawAll();
