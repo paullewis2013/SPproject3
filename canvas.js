@@ -31,7 +31,7 @@ window.addEventListener('mousemove',
   function(event) {
     mouse.x = event.x - .025 * window.innerWidth;;
     mouse.y = event.y - 70;
-    //console.log(mouse)
+    // console.log(mouse)
   })
 
 
@@ -156,31 +156,104 @@ function drawUserHand(){
   }
 }
 
-
 //draws the trains
-var trainImgs = [];
+var trainImgs = new Array();
 function drawTrains(){
 
   for(i=0; i<trainsArr.length; i++){
 
-    (function (i) {
-      var xPos = ((1 + (i * 2)) * ((canvas.width)/(2 * trainsArr.length)));
+      (function (i) {
 
-      trainImgs[i] = new Image();
-      trainImgs[i].src = trainsArr[i].imgName;
-      trainImgs[i].onload = function () {
+        trainImgs[i] = new Image();
+        trainImgs[i].src = trainsArr[i].imgName;
+
+        var xPos;
+        var yPos;
+
+        trainImgs[i].onload = function () {
+
+          xPos = ((1 + (i * 2)) * ((canvas.width)/(2 * trainsArr.length))) - trainImgs[i].width/2;
+          yPos = 0;
+
+          c.drawImage(trainImgs[i], xPos, yPos);
+          trainsArr[i].setBounds(xPos, yPos, xPos + trainImgs[i].width, trainImgs[i].height);
+
+          drawTrainOfDominos(trainsArr[i], i);
+        };
+
+        // for(j=0; j<trainsArr[i].dominos.length; j++){
+        //
+        //   trainDominoImgs[i][j] = new Image();
+        //   trainDominoImgs[i][j].src = trainsArr[i].dominos[j].imgName;
+        //
+        //   trainDominoImgs[i][j].onload = function() {
+        //     yPos += trainDominoImgs[i][j].height;
+        //     c.drawImage(trainDominoImgs[i][j], xPos, yPos);
+        //
+        //     //updateBouds
+        //     trainsArr[i].dominos[j].setBounds(xPos, yPos, xPos + trainDominoImgs[i][j].width, yPos + trainDominoImgs[i][j].height);
+        //
+        //     //add numbers
+        //     c.font = "35px Arial";
+        //     c.textAlign = "center";
+        //     c.fillText(trainsArr[i].dominos[j].values[0], xPos + trainDominoImgs[i][j].width/2, yPos + 40);
+        //     c.fillText(trainsArr[i].dominos[j].values[1], xPos + trainDominoImgs[i][j].width/2, yPos + 90);
+
+          // }
+        // }
 
 
-        var leftEdge = xPos - trainImgs[i].width/2;
-
-        c.drawImage(trainImgs[i], leftEdge, 0);
-        trainsArr[i].setBounds(leftEdge, 0, leftEdge + trainImgs[i].width, trainImgs[i].height);
-      };
-
-    })(i);
+      })(i);
 
   }
 }
+
+//returns 2D array with rows # of empty arrays inside
+function build2DArr(rows){
+  var arr = new Array();
+
+  for(i=0; i<rows; i++){
+    arr[i] = [];
+  }
+
+  return arr;
+}
+
+var trainDominoImgs = build2DArr(trainsArr.length);
+
+function drawTrainOfDominos(train, index){
+
+  //loop through every dominos in train's list of dominos
+  for(i=0; i<train.dominos.length; i++){
+
+    //declare location for domino image to be drawn
+    var xPos = train.leftB;
+    var yPos = train.bottomB - 100;
+
+    (function (i) {
+
+      //create a new image in the image array
+      trainDominoImgs[index][i] = new Image();
+      trainDominoImgs[index][i].src = train.dominos[i].imgName;
+
+      trainDominoImgs[index][i].onload = function() {
+        yPos += trainDominoImgs[index][i].height;
+        c.drawImage(trainDominoImgs[index][i], xPos, yPos);
+
+        //updateBouds
+        train.dominos[i].setBounds(xPos, yPos, xPos + trainDominoImgs[index][i].width, yPos + trainDominoImgs[index][i].height);
+
+        //add numbers
+        c.font = "35px Arial";
+        c.textAlign = "center";
+        c.fillText(train.dominos[i].values[0], xPos + trainDominoImgs[index][i].width/2, yPos + 40);
+        c.fillText(train.dominos[i].values[1], xPos + trainDominoImgs[index][i].width/2, yPos + 90);
+
+      }
+    })(i);
+  }
+}
+
 
 //clears canvas then redraws with updated images
 function drawAll(){

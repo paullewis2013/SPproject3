@@ -2,100 +2,10 @@
 <html>
   <head>
     <title>Dominos</title>
+
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
-    <style>
-      body {
-        background: url("assets/woodbackground.jpg") no-repeat center fixed;
-        -webkit-background-size: cover;
-        -moz-background-size: cover;
-        -o-background-size: cover;
-        background-size: cover;
-        padding-top: 10px;
-      }
-      .unselectable {
-        -webkit-touch-callout: none;
-        -webkit-user-select: none;
-        -khtml-user-select: none;
-        -moz-user-select: none;
-        -ms-user-select: none;
-        user-select: none;
-      }
-      h1, h6 {
-        text-align: center;
-        margin: 10px;
-      }
-      .bottom {
-        position: fixed;
-        bottom: 0px;
-      }
-      .card-felt {
-        width:95%;
-        background-image: url("assets/felt.jpg");
-        border-radius: 10px;
-        border: 2px solid black;
-        left: 2.5%;
-        position: absolute;
-        bottom: 35px;
-        top: 70px;
-        min-width: 1080px;
-      }
-      #menu-symbol{
-        margin-left: 10px;
-        position: absolute;
-        top: 10;
-        border-radius: 5px;
-        padding-left: 10px;
-        padding-right: 10px;
-        background-color: white;
-        opacity: .5;
-      }
-      .sidenav {
-        height: 100%;
-        width: 0;
-        position: fixed;
-        z-index: 1;
-        top: 0;
-        left: 0;
-        background-color: #111;
-        overflow-x: hidden;
-        transition: 0.5s;
-        padding-top: 60px;
-      }
-      .sidenav .closebtn {
-        position: absolute;
-        top: 0;
-        right: 25px;
-        font-size: 36px;
-        margin-left: 50px;
-      }
-      .sidenav a {
-        padding: 8px 8px 8px 32px;
-        text-decoration: none;
-        font-size: 25px;
-        color: #818181;
-        display: block;
-        transition: 0.3s;
-      }
-
-      .sidenav a:hover {
-          color: #f1f1f1;
-      }
-      #main {
-        transition: margin-left .5s;
-        padding: 16px;
-      }
-      .container-fluid{
-        padding: 0px;
-      }
-      canvas {
-        /* border: 3px solid red; */
-        margin: 0px;
-      }
-      p {
-        color:red;
-      }
-    </style>
+    <link rel="stylesheet" href="game.css">
 
     <script src="game.js"></script>
 
