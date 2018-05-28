@@ -231,46 +231,76 @@ function drawTrainOfDominos(train, index){
     var xPos;
     var yPos = train.bottomB;
 
+    var unCollapse = false;
+
     (function (i) {
 
       //create a new image in the image array
       trainDominoImgs[index][i] = new Image();
 
+      //sets image for doubles dominos to be sideways
       if(train.dominos[i].values[0] === train.dominos[i].values[1]){
         train.dominos[i].imgName = "assets/dominos/0-0_sideways.png";
       }
 
       trainDominoImgs[index][i].src = train.dominos[i].imgName;
 
-
       trainDominoImgs[index][i].onload = function() {
 
-        if(i>0){
-          yPos += trainDominoImgs[index][i-1].height;
-        }
-        xPos = trainxPos - trainDominoImgs[index][i].width/2;
+        if(i === 0 && train.dominos.length > 5){
 
-        c.drawImage(trainDominoImgs[index][i], xPos, yPos);
+          var collapsed = new Image();
+          collapsed.src = "assets/collapsed.png";
 
-        //updateBouds
-        train.dominos[i].setBounds(xPos, yPos, xPos + trainDominoImgs[index][i].width, yPos + trainDominoImgs[index][i].height);
+          yPos = train.bottomB;
+          xPos = trainxPos - collapsed.width/2;
 
-        //add numbers
-        c.font = "35px Arial";
-        c.textAlign = "center";
+          c.drawImage(collapsed, xPos, yPos);
 
-        //for normal dominos
-        if(train.dominos[i].imgName === "assets/dominos/0-0.png"){
-          console.log("here");
-          c.fillText(train.dominos[i].values[0], xPos + trainDominoImgs[index][i].width/2, yPos + 40);
-          c.fillText(train.dominos[i].values[1], xPos + trainDominoImgs[index][i].width/2, yPos + 90);
+          yPos += collapsed.height;
+
+          unCollapse = true;
         }
 
-        //for doubles
-        else{
-          c.fillText(train.dominos[i].values[0], xPos + trainDominoImgs[index][i].width/4, yPos + 40);
-          c.fillText(train.dominos[i].values[1], xPos + 3 * trainDominoImgs[index][i].width/4, yPos + 40);
+        //only draws dominos from the end of train
+        if(i - train.dominos.length + 5 >= 0){
+
+          //adds height of previous image to yPosition unless it is the first image
+          // or the first image after being collapsed
+          if(i>0 && !unCollapse){
+            yPos += trainDominoImgs[index][i-1].height;
+          }
+
+          xPos = trainxPos - trainDominoImgs[index][i].width/2;
+
+          //turns off uncollapse for subsequent dominos
+          if(unCollapse){
+            unCollapse = false;
+          }
+
+          c.drawImage(trainDominoImgs[index][i], xPos, yPos);
+
+          //updateBouds
+          train.dominos[i].setBounds(xPos, yPos, xPos + trainDominoImgs[index][i].width, yPos + trainDominoImgs[index][i].height);
+
+          //add numbers
+          c.font = "35px Arial";
+          c.textAlign = "center";
+
+          //for normal dominos
+          if(train.dominos[i].imgName === "assets/dominos/0-0.png"){
+            c.fillText(train.dominos[i].values[0], xPos + trainDominoImgs[index][i].width/2, yPos + 40);
+            c.fillText(train.dominos[i].values[1], xPos + trainDominoImgs[index][i].width/2, yPos + 90);
+          }
+
+          //for doubles
+          else{
+            c.fillText(train.dominos[i].values[0], xPos + trainDominoImgs[index][i].width/4, yPos + 40);
+            c.fillText(train.dominos[i].values[1], xPos + 3 * trainDominoImgs[index][i].width/4, yPos + 40);
+          }
         }
+
+
       }
     })(i);
   }
