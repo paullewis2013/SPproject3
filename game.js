@@ -74,7 +74,6 @@ Train.prototype.addDomino = function(dom){
 
   if(dom.values[0] === this.lastVal){
     //add
-    console.log('add');
 
     this.dominos = this.dominos.concat(userHand.splice(selectedIndex, 1));
 
@@ -89,10 +88,7 @@ Train.prototype.addDomino = function(dom){
     //flip
     userHand[selectedIndex].flip();
 
-
     //then add
-    console.log('flip then add');
-
     this.dominos = this.dominos.concat(userHand.splice(selectedIndex, 1));
 
     //deselects domino after adding it
@@ -102,9 +98,6 @@ Train.prototype.addDomino = function(dom){
     return true;
   }else{
     //dont add
-    console.log('no add');
-    console.log(this.lastVal);
-
     return false;
   }
 }

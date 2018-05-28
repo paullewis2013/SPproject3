@@ -106,7 +106,7 @@ function drawBonePile(){
 
     c.font = "40px Arial";
     if(dominosArr.length > 99){
-      c.font = "30px Arial";
+      c.font = "28px Arial";
     }
 
     c.textAlign = "center";
@@ -227,17 +227,29 @@ function drawTrainOfDominos(train, index){
   for(i=0; i<train.dominos.length; i++){
 
     //declare location for domino image to be drawn
-    var xPos = train.leftB;
-    var yPos = train.bottomB - 100;
+    var trainxPos = train.leftB + (train.rightB - train.leftB)/2;
+    var xPos;
+    var yPos = train.bottomB;
 
     (function (i) {
 
       //create a new image in the image array
       trainDominoImgs[index][i] = new Image();
+
+      if(train.dominos[i].values[0] === train.dominos[i].values[1]){
+        train.dominos[i].imgName = "assets/dominos/0-0_sideways.png";
+      }
+
       trainDominoImgs[index][i].src = train.dominos[i].imgName;
 
+
       trainDominoImgs[index][i].onload = function() {
-        yPos += trainDominoImgs[index][i].height;
+
+        if(i>0){
+          yPos += trainDominoImgs[index][i-1].height;
+        }
+        xPos = trainxPos - trainDominoImgs[index][i].width/2;
+
         c.drawImage(trainDominoImgs[index][i], xPos, yPos);
 
         //updateBouds
@@ -246,9 +258,19 @@ function drawTrainOfDominos(train, index){
         //add numbers
         c.font = "35px Arial";
         c.textAlign = "center";
-        c.fillText(train.dominos[i].values[0], xPos + trainDominoImgs[index][i].width/2, yPos + 40);
-        c.fillText(train.dominos[i].values[1], xPos + trainDominoImgs[index][i].width/2, yPos + 90);
 
+        //for normal dominos
+        if(train.dominos[i].imgName === "assets/dominos/0-0.png"){
+          console.log("here");
+          c.fillText(train.dominos[i].values[0], xPos + trainDominoImgs[index][i].width/2, yPos + 40);
+          c.fillText(train.dominos[i].values[1], xPos + trainDominoImgs[index][i].width/2, yPos + 90);
+        }
+
+        //for doubles
+        else{
+          c.fillText(train.dominos[i].values[0], xPos + trainDominoImgs[index][i].width/4, yPos + 40);
+          c.fillText(train.dominos[i].values[1], xPos + 3 * trainDominoImgs[index][i].width/4, yPos + 40);
+        }
       }
     })(i);
   }
