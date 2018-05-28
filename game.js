@@ -40,7 +40,7 @@ var dominosArr = new Array();
 var userHand = new Array();
 var defaultStartDub = true;
 var startDub;
-var maxTrains = 8;
+var maxTrains = 6;
 var selectedDom = undefined;
 var selectedIndex = undefined;
 

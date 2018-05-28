@@ -86,14 +86,14 @@ window.addEventListener('click',
 //draws starting double at top of canvas
 function drawStartDub(){
   var dubImage = new Image();
-  dubImage.src = "assets/dominos/0-0.png";
+  dubImage.src = "assets/dominos/0-0_sideways.png";
   dubImage.onload = function() {
     c.drawImage(dubImage, (canvas.width/2 - (dubImage.width)/2), 0, dubImage.width, dubImage.height);
 
     c.font = "35px Arial";
     c.textAlign = "center";
-    c.fillText(startDub.values[0], canvas.width/2, 40);
-    c.fillText(startDub.values[1], canvas.width/2, 90);
+    c.fillText(startDub.values[0], canvas.width/2 - (dubImage.width)/4, 40);
+    c.fillText(startDub.values[1], canvas.width/2 + (dubImage.width)/4, 40);
   }
 }
 
